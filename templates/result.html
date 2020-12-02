@@ -12,11 +12,13 @@
 	<div class='container'>
 		<div class="jumbotron">
 			<center>
-				<h2 style="color:blue;font-size:20;text-align: center;"><b>Results for Comment</b></h2>	
-				{% if prediction == 1%}
-				<h2 style="color:red;">Spam</h2>
-				{% elif prediction == 0%}
-				<h2 style="color:green;">Not a Spam/Ham</h2>
+				<h2 style="color:blue;font-size:20;text-align: center;"><b>Review is :</b></h2>
+				{% if prediction == 'nagative'%}
+				<h2 style="color:red;">Nagative</h2>
+				{% elif prediction == 'positive'%}
+				<h2 style="color:green;">Positive</h2>
+				{% else%}
+				<h2 style="color:light blue;">Nuetral</h2>
 				{% endif %}
 			</center>
 		</div>
