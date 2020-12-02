@@ -17,10 +17,11 @@ def home():
 @app.route('/predict',methods=['POST'])
 def predict():
     df = pd.read_csv("reviews.csv", encoding="latin-1")
+    df['label'] = df['sentiment_category'].map({'negative': 0, 'positive': 1,'neutral': 2})
     df = df.dropna()
 
     X = df['cleanedReviews']
-    y = df['sentiment_category']
+    y = df['label']
 
     # Extract Feature With CountVectorizer
     cv = CountVectorizer()
@@ -42,6 +43,7 @@ def predict():
         data = [message]
         vect = cv.transform(data).toarray()
         my_prediction = clf.predict(vect)
+        print(my_prediction)
     return render_template('result.html',prediction = my_prediction)
 
 
