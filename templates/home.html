@@ -1,33 +1,76 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Home</title>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!-- saved from url=(0051)https://amazon-echodot-review.herokuapp.com/predict -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style class="vjs-styles-defaults">
+      .video-js {
+        width: 300px;
+        height: 150px;
+      }
+
+      .vjs-fluid {
+        padding-top: 56.25%
+      }
+    </style>
+
+    <title>
+  Predict EchoDot Reviews
+</title>
+
+<style>
+    body{
+        max-width: 900px;
+        margin: auto;
+        horiz-align: center;
+    }
+    .echo{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+
+
+    </style>
 
 </head>
+
+
+
 <body>
-	<br><br><br><br><br>
-		<div class='container'>
-			<div class="jumbotron">
-				<center><h2>Zebrancs Reviews sentiment Analysis</h2></center><br/>
+<img src="https://www.task.telangana.gov.in/site/img/logo.png" height="250px" width="120px">
+<img src="https://elearning.excelr.com/static/images/iidt_logo_137.png" height="200px" width="320px">
+
+<br>
 				<form action="{{ url_for('predict')}}" method="POST">
-				<center>
-					<p>Enter Your Review for the product Here</p>
-					<!-- <input type="text" name="comment"/> -->
-					<textarea name="message" rows="4" cols="40"></textarea>
-					<br/>
-					<br>
-					<input type="submit" class="btn-info" value="predict">
-				</center>
-				</form>
-			<div>
-		</div>
 
-	
-	
+<br>
+    <textarea name="message" rows="7" cols="50" placeholder="Enter your review " value="" style="font-size: 15px"></textarea>
+<br><br>
+    <input type="submit" value="get sentiment" size="6" style="color:#800080" >
 
-</body>
-</html>
+</form>
+{% print(request.form['message'] )%}
+{% print(prediction)%}
+
+
+
+{% if (request.form['message'] == '')%}
+<h2 style="color:red;">please enter the review and then click on get sentiment button</h2>
+
+{%else %}
+
+<font size="6"  color="#A901DB"><left>
+				{% if prediction == 0%}
+				<h2 style="color:red;">Nagative</h2>
+				{% elif prediction == 1%}
+				<h2 style="color:green;">Positive</h2>
+	            {% elif prediction == 2%}
+                <h2 style="color:blue;">Nuetral</h2>
+				{% endif %}
+
+</left></font>
+
+				{% endif %}
+
+
+
+</body></html>
